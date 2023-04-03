@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<th:block>
+    <div th:replace="fragments/head.html :: head"></div>
+</th:block>
+
+<body>
+<div class="container-fluid">
+
+    <th:block>
+        <div th:replace="fragments/header.html :: header"></div>
+    </th:block>
+
+    <main class="mt-5">
+        <div class="jumbotron bg-re-form w-25 m-auto">
+            <th:block th:if="${param.logout}">
+                <div class="text-center  brush-script" style="color: #4fa36f">
+                    Successful logout
+                </div>
+            </th:block>
+            <h2 class="text-center mc-colorize brush-script">Password Changed</h2>
+            <div th:if="${error != null}">
+    			<p class="text-danger">[[${error}]]</p>
+			</div>
+			<div th:if="${message != null}">
+  				  <p class="text-warning">[[${message}]]</p>
+			</div>
+
+            <form th:action="@{/#}" th:method="POST">
+             <div>
+       				 <p>
+       				 		Now you can proceed with sign in process.
+       				 </p>
+   			 </div>
+                
+
+             
+
+              
+                <!--<button type="submit" class="btn w-100 bg-re"><i class="fas fa-sign-in-alt"></i>Login</button>-->
+            		
+            </form>
+            <th:block th:if="${param.error}">
+                <div class="text-center" style="color: red" th:text="${session.SPRING_SECURITY_LAST_EXCEPTION.message}">
+                    <!--Bad Credentials-->
+                </div>
+            </th:block>
+
+        </div>
+    </main>
+
+    <th:block>
+        <div th:replace="fragments/footer.html :: footer"></div>
+    </th:block>
+
+</div>
+</body>
+</html>

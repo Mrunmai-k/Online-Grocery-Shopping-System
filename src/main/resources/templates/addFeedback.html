@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<th:block>
+    <div th:replace="fragments/head.html :: head"></div>
+</th:block>
+
+<body>
+<div class="container-fluid">
+
+    <th:block>
+        <div th:replace="fragments/header.html :: header"></div>
+    </th:block>
+
+    <main class="mt-5">
+        <div class="jumbotron bg-re-form w-50 m-auto">
+            <h2 class="text-center brush-script mc-colorize">Add Feedback</h2>
+			<br>
+            <form th:action="@{/process-feedback}" th:method="post" th:object="${feedback}">
+                <div class="form-group">
+                    
+                    <input type="radio" id="comp" name="ftype" value="Compliment" checked/>
+                    <label for="comp" class="radio-inline">Compliment</label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    
+                    <input type="radio" id="suggest" name="ftype" value="Suggestion" />
+                    <label for="suggest" class="radio-inline">Suggestion</label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    
+                    <input type="radio" id="complaint" name="ftype" value="Complaint" />
+                    <label for="comaplaint" class="radio-inline">Complaint</label>
+                </div>
+                
+
+                <div class="form-group">
+                    <label for="inputDesc" class="brush-script">Description</label>
+                    <textarea id="inputDesc" name="fdesc" placeholder="Description" rows="2" cols="70"></textarea>
+                </div>
+
+				<!-- <div class="form-group">
+                    <div class="row">
+            			<div class="col-md-6">
+                			<h5 class="text-white">Email:</h5>
+            			</div>
+            		<div class="col-md-6">
+                		<h5 th:text="${viewModel.email}"></h5>
+            		</div>
+        		</div>
+                </div> -->
+					
+                
+                <button type="submit" class="btn w-100 bg-re"><i class="fas fa-user-plus"></i>Add Feedback</button>
+            </form>
+
+        </div>
+    </main>
+
+    <th:block>
+        <div th:replace="fragments/footer.html :: footer"></div>
+    </th:block>
+
+</div>
+
+<script>
+    function htmlEscape(input) {
+        input.replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;')
+            .replace(/"/g, '&quot;');
+    }
+</script>
+
+</body>
+</html>

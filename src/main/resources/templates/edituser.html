@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<th:block>
+    <div th:replace="fragments/head.html :: head"></div>
+</th:block>
+<body>
+    <th:block>
+        <div th:replace="fragments/header.html :: header"></div>
+    </th:block>
+    <main class="mt-3">
+        <div class="jumbotron bg-re-form w-25 m-auto">
+            <h2 class="text-center mc-colorize">Edit User</h2>
+            <form id="add-user-form" th:action="@{/user/edit/{id}(id=${model.id})}" method="get"
+                  th:object="${model}"
+                  enctype="multipart/form-data"><input type="hidden" name="_csrf"
+                                                       value="c686cd14-a7f9-4216-8009-c093b7d3df86">
+                <div class="form-group" th:classappend="${#fields.hasErrors('username')}? 'text-danger'">
+                    <label for="inputUsername" class="brush-script">Username</label>
+                    <input type="text" class="form-control" id="inputUsername" name="username" th:field="*{username}"
+                           placeholder="Enter username...">
+                    <small id="usernameHelp" th:each="error : ${#fields.errors('username')}" th:text="${error}">
+                        Error Message
+                    </small>
+                </div>
+                
+                <div class="form-group" th:classappend="${#fields.hasErrors('address')}? 'text-danger'">
+                    <label for="inputShippingAddress" class="brush-script">Shipping Address</label>
+                    <input type="text" class="form-control" id="inputShippingAddress" name="address" th:field="*{address}"
+                           placeholder="Shipping Address...">
+                    <small id="addresHelp" th:each="error : ${#fields.errors('address')}" th:text="${error}">
+                        Error Message
+                    </small>
+                </div>
+
+                <div class="form-group" th:classappend="${#fields.hasErrors('email')}? 'text-danger'">
+                    <label for="inputEmail" class="brush-script">Email address</label>
+                    <input type="email" class="form-control" id="inputEmail" aria-describedby="emailHelp" name="email" th:field="*{email}"
+                           placeholder="Enter email...">
+                    <small id="emailHelp" th:each="error : ${#fields.errors('email')}" th:text="${error}">
+                        Error Message
+                    </small>
+                </div>
+                
+                <button type="submit" class="btn w-100 bg-re"><i class="fas fa-user-plus"></i>Edit User</button>
+            </form>
+        </div>
+    </main>
+    <th:block>
+        <div th:replace="fragments/footer.html :: footer"></div>
+    </th:block>
+</body>
+</html>
